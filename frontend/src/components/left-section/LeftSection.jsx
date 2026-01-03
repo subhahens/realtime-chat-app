@@ -1,22 +1,32 @@
-import React from 'react'
-import {EllipsisVertical,Search} from 'lucide-react'
-
+import React from 'react';
+import Nav from './nav.jsx';
+import SearchContacts from './SearchContacts.jsx';
+import Contacts from './contacts.jsx';
 const Leftsection = () => {
+  const userdata = [{
+    imgURL: "url",
+    Name: "subha hens",
+    tagline: "no pain no gain",
+    isOnline: true
+  }, {
+    imgURL: "url",
+    Name: "ritu hens",
+    tagline: " pain  gain",
+    isOnline: true
+  }
+  ]
   return (
-    <div className='bg-amber-300 w-2/6 h-screen'>
-      <nav className='bg-indigo-900 p-5 h-10 flex justify-end items-center '>
-        <div className='hover:bg-indigo-600 w-8 h-8 rounded-full flex justify-center items-center'>
-          <EllipsisVertical className='cursor-pointer'/>
+    <div className='bg-gray-800 w-2/6 h-screen'>
+      <Nav />
+      <SearchContacts />
+      <div className='bg-gray-700 h-110 overflow-x-auto flex flex-col items-center gap-4'>
+        <div className='w-full gap-10'>
+          {userdata.map((elem) => {
+            return <Contacts name={elem.Name} tag={elem.tagline} isOnline={elem.isOnline} />;
+          }
+          )};
         </div>
-      </nav>
-      <div className='bg-gray-900 gap-3 p-5 flex justify-center items-center '>
-        <input className='w-80 h-12 bg-gray-500  text-white text-2xl rounded-xl shadow appearance-none border py-2 px-3 leading-tight focus:border-3  focus:border-sky-500 focus:outline-none focus:shadow-outline-sky-500' type="text" name='search' placeholder='type contact...' />
-        <button className='w-12 h-12 bg-gray-500 flex justify-center items-center rounded-full cursor-pointer' type="button"><Search /></button>
-      </div>
-      <div className='bg-gray-700 h-screen flex justify-center'>
-        <div className='bg-green-400 w-full h-20'>
-
-        </div>
+        <p className='text-gray-400'>no more contacts here</p>
       </div>
     </div>
   )
