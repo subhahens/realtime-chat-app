@@ -38,7 +38,7 @@ const SignUp = () => {
   {/*-----web ui here------*/}
   return (
     <div>
-      <div className='w-full h-screen  bg-linear-45 from-pink-600 to-indigo-500 flex m-0 p-0 items-center justify-center'>
+      <div className='w-full h-screen  bg-linear-45 from-pink-600 to-indigo-500 flex m-0 p-0 items-center justify-center animated-bg'>
         <form className='w-100 h-140 bg-gray-700 rounded-xl flex items-center justify-center gap-5 flex-col border-2 border-gray-700  bg-blur-xl '
           onSubmit={(e) => {
             validity(e);

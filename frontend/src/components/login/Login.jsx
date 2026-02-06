@@ -15,7 +15,7 @@ const Login = () => {
         setPass(elem.target.value);
     }
     return (
-        <div className='w-full h-screen  bg-linear-45 from-pink-600 to-indigo-500 flex m-0 p-0 items-center justify-center'>
+        <div className='w-full h-screen flex items-center justify-center animated-bg'>
             <form className='w-100 h-120 bg-gray-700 rounded-xl flex items-center justify-center gap-10 flex-col border-2 border-gray-700  bg-blur-xl ' 
             onSubmit={(e) => {
                     check(e);
