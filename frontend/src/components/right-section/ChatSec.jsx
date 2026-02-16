@@ -4,7 +4,7 @@ import { formatTime } from '../../lib/utils'
 
 const ChatSec = ({ SelectedUser, setSelectedUser }) => {
     return (
-        <div className='bg-gray-900 h-110 text-red-50 flex flex-col-reverse overflow-y-scroll'>
+        <div className='bg-gray-900 h-110 p-5 text-red-50 flex flex-col overflow-y-scroll'>
             {messagesDummyData.map((msg, index) => (
                 <div key={index} className={`w-full flex ${msg.senderId === 'user1' && 'flex-row-reverse'}`}>
                     <div className='flex flex-col'>

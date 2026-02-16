@@ -1,18 +1,30 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Nav from './nav.jsx';
 import SearchContacts from './SearchContacts.jsx';
-import Contacts from './contacts.jsx';
-import {userdata} from '../../lib/dummy.js'
-const Leftsection = ({setSelectedUser}) => {
-  
+import Contacts from './Contacts.jsx';
+import { MsgContext } from '../../../context/MsgContext.jsx';
+import { AuthContext } from '../../../context/AuthContext.jsx';
+const Leftsection = () => {
+  const {users,selectedUser,getUsers,
+        setSelectedUser,unseenmsg,setUnseenmsg,} = useContext(MsgContext);
+  const {OnlineUser} = useContext(AuthContext);
+  const [Input, setInput] = useState("");
+  const filteredUsers = users ;
+  useEffect(() => {
+  try {
+    getUsers();
+  } catch (e) {
+    console.error(e);
+  }
+}, [OnlineUser]);
   return (
     <div className='bg-gray-800 w-2/6 h-screen'>
       <Nav />
       <SearchContacts />
       <div className='bg-gray-700 h-110 overflow-x-auto flex flex-col items-center gap-4'>
         <div className='w-full gap-10'>
-          {userdata.map((elem) => {
-            return <Contacts onClick={() => setSelectedUser(elem)} name={elem.Name} tag={elem.tagline} img={elem.imgURL} isOnline={elem.isOnline} />;
+          {filteredUsers.map((elem) => {
+            return <Contacts onClick={() => setSelectedUser(elem)} name={elem.Name} tag={elem.tagline} img={elem.imgURL} isOnline={OnlineUser.includes(elem._id)} />;
           }
           )};
         </div>

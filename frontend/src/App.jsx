@@ -1,18 +1,25 @@
-import React from 'react'
-import Login from './components/login/login'
-import SignUp from './components/login/signUp'
-import { Routes,Route } from 'react-router-dom'
-import Notfound from './components/notfound.JSX'
-import Chat from './components/chat-ui/Chat'
-import MyProfile from './components/myProfile/MyProfile'
+import React, { useContext } from 'react';
+import Login from './components/login/login.jsx';
+import SignUp from './components/login/signUp';
+import { Routes,Route, Navigate } from 'react-router-dom';
+import Notfound from './components/notfound.JSX';
+import Chat from './components/chat-ui/Chat';
+import MyProfile from './components/myProfile/MyProfile';
+import {Toaster} from 'react-hot-toast';
+import { AuthContext } from '../context/AuthContext';
+
 const App = () => {
+  const {AuthUser} = useContext(AuthContext);
+  console.log(AuthUser);
+  
   return (
     <>
+      <Toaster />
       <Routes>
-        <Route path='/profile' element={<MyProfile />} />
-        <Route path='/chat' element={<Chat />} />
-        <Route path="/" element={<Login />} />
-        <Route path='/SignUp' element={<SignUp />} />
+        <Route path='/profile' element={AuthUser ? <MyProfile />: <Navigate to="/SignUp" /> } />
+        <Route path='/chat' element={AuthUser ? <Chat />: <Navigate to="/SignUp" />} />
+        <Route path="/" element={!AuthUser ? <Login />: <Navigate to="/chat" />} />
+        <Route path='/SignUp' element={!AuthUser ? <SignUp />: <Navigate to="/chat" />} />
         {/*---- 404 error  ----*/}
         <Route path='*' element={<Notfound />} />
       </Routes>   

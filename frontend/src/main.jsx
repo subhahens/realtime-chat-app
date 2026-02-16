@@ -1,11 +1,16 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import {BrowserRouter} from "react-router-dom"
+import { BrowserRouter } from "react-router-dom"
 import App from './App.jsx'
-
+import { AuthProvider } from '../context/AuthContext.jsx'
+import { MsgProvider } from '../context/MsgContext.jsx'
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <App/>
+    <AuthProvider>
+      <MsgProvider>
+        <App />
+      </MsgProvider>
+    </AuthProvider>
   </BrowserRouter>
 )

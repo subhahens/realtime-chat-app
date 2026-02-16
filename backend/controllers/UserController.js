@@ -3,9 +3,10 @@ import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 
 export const SignUp = async (req,res)=>{
-    const {fullName,email,password} = req.body;
-    try {
-        if(!fullName || !email || !password ) {
+
+    const {Name,email,password} = req.body;
+    try { 
+        if(!Name || !email || !password ) {
             return res.json({success: false,message: "Missing any fields"})
         }
         const user = await User.findOne({email});
@@ -13,9 +14,9 @@ export const SignUp = async (req,res)=>{
             return res.json({success: false,message: "user already exist"})
         }
         const salt = await bcrypt.genSalt(10);
-        const hashpass = bcrypt.hash(password,salt);
+        const hashpass = await  bcrypt.hash(password,salt);
         const newUser = await User.create({
-            fullName,email,password:hashpass
+            Name,email,password:hashpass
         })
         const token = generateToken(newUser._id);
         res.json({success: true,dataUser: newUser, token ,message: "successfully sigh up"})
@@ -24,4 +25,31 @@ export const SignUp = async (req,res)=>{
         console.log(error.message);
         res.json({success:false,message: error.message})
     }
+}
+
+export const Login = async (req,res)=>{
+    try {
+        const {email,password} = req.body;
+        const dataUser = await User.findOne({email});
+        if(!dataUser){
+            return res.json({
+                success:false,
+                message:"User not found"
+            });
+        }
+        const isPasswordCorrect = await bcrypt.compare(password,dataUser.password);
+        if(!isPasswordCorrect) {
+            res.json({success: false,message: "password incorrected"});
+        }
+        const token = generateToken(dataUser._id);
+        res.json({success: true,dataUser, token ,message: "successfully login"})
+
+    } catch (error) {
+        console.log(error.message);
+        res.json({success:false,message: error.message})
+    }
+}
+
+export const checkAuth = (req,res) => {
+    res.json({success:true,user: req.user});
 }

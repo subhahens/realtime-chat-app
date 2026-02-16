@@ -1,11 +1,13 @@
-import {useState,React} from 'react'
+import {useState,React, useContext} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { EllipsisVertical,LogOut,CircleUserRound } from 'lucide-react'
+import { AuthContext } from '../../../context/AuthContext';
 const Nav = () => {
     const [open, setOpen] = useState(false); 
     const navigate = useNavigate();
+    const {logout} =useContext(AuthContext);
     return (
-        <nav className="bg-gray-950 p-5 h-10 flex justify-end items-center relative">
+        <nav className="bg-gray-950 p-5 h-15 flex justify-end items-center relative">
             {/* Icon */}
             <div onClick={() => { 
                 setOpen(!open);
@@ -20,7 +22,9 @@ const Nav = () => {
                     }} className="px-4 py-2 select-none hover:bg-gray-700 cursor-pointer border-b flex flex-row gap-2 border-gray-700">
                         <CircleUserRound />Profile
                     </span>
-                    <span className="px-4 py-2 gap-2 select-none hover:bg-gray-700 flex flex-row cursor-pointer">
+                    <span onClick={()=>{
+                        logout();
+                    }} className="px-4 py-2 gap-2 select-none hover:bg-gray-700 flex flex-row cursor-pointer">
                         <LogOut />Logout
                     </span>
                 </div>
