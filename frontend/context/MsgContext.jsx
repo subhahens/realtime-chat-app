@@ -1,11 +1,11 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState ,useEffect } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "./AuthContext";
 
 
 export const MsgContext = createContext();
 export const MsgProvider = ({ children }) => {
-    const { axios ,Socket} = useContext(AuthContext);
+    const { axios, Socket } = useContext(AuthContext);
     const [messages, setMessages] = useState([]);
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
@@ -51,22 +51,27 @@ export const MsgProvider = ({ children }) => {
                 setMessages((prevMessages) => [...prevMessages, newMessage]);
                 axios.put(`/api/messages/mark/${selectedUser._id}`);
 
-            } else {
+            } else { 
                 setUnseenmsg((prevUnseenMessages) => ({
-                    ...prevUnseenMessages, [newMessage.senderId]: prevUnseenMessages[newMessage.senderId] ? prevUnseenMessages[newMessage, senderId] + 1 : 1
+                    ...prevUnseenMessages, [newMessage.senderId]: prevUnseenMessages[newMessage.senderId] ? prevUnseenMessages[newMessage.senderId] + 1 : 1
                 })
                 )
             }
         })
     }
     const unsubscribeToMessages = () => {
-        if (Socket) Socket.off("newMessages");
+        if (Socket) Socket.off("newMessage");
     }
+    useEffect(() => {
+        subscribeToMessages();
+        return () => unsubscribeToMessages();
+    }, [Socket, selectedUser]);
     const value = {
         messages,
         users,
         selectedUser,
         getUsers,
+        getMessages,
         setMessages,
         sendMsg,
         setSelectedUser,

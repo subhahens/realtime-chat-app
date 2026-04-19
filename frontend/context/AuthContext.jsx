@@ -70,6 +70,17 @@ export const AuthProvider = ({ children }) => {
         toast.success("logged out successfully");
         Socket.disconnect();
     }
+    const updateProfile = async (body) => {
+        try {
+            const {data} = await axios.put("/api/auth/profile",body);
+            if(data.success) {
+                setAuthUser(data.user);
+                toast.success("profile updated");
+            }
+        } catch (error) {
+            toast.error(error.message);
+        }
+    }
     useEffect(() => {
         if (Token) {
             axios.defaults.headers.common["token"] = Token;
@@ -83,7 +94,8 @@ export const AuthProvider = ({ children }) => {
         OnlineUser,
         Socket,
         login,
-        logout
+        logout,
+        updateProfile
     }
     return (
         <AuthContext.Provider value={value}>

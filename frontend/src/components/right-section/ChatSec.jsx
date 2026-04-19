@@ -1,20 +1,51 @@
-import React from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { messagesDummyData } from '../../lib/dummy'
 import { formatTime } from '../../lib/utils'
+import { MsgContext } from '../../../context/MsgContext';
+import { AuthContext } from '../../../context/AuthContext';
 
-const ChatSec = ({ SelectedUser, setSelectedUser }) => {
+const ChatSec = () => {
+    const { messages, selectedUser, setSelectedUser } = useContext(MsgContext);
+    const { AuthUser, OnlineUser } = useContext(AuthContext);
+    const scrollEnd = useRef();
+    useEffect(() => {
+        if (scrollEnd.current && messages) {
+            scrollEnd.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [messages])
     return (
         <div className='bg-gray-900 h-110 p-5 text-red-50 flex flex-col overflow-y-scroll'>
-            {messagesDummyData.map((msg, index) => (
-                <div key={index} className={`w-full flex ${msg.senderId === 'user1' && 'flex-row-reverse'}`}>
+            {messages?.map((msg, index) => (
+                <div
+                    key={index}
+                    className={`w-full flex ${msg.senderId === AuthUser._id && 'flex-row-reverse'
+                        }`}
+                >
                     <div className='flex flex-col'>
-                        <p className='min-w-50 max-h-25 border mx-10 rounded-xl p-3 border-black bg-green-500 flex'>{msg.text}</p>
-                        <p className='mx-10  text-gray-400'>{formatTime(msg.createdAt)}</p>
+                        <div className='mx-10'>
+                            {msg.image ? (
+                                <img
+                                    src={msg.image}
+                                    alt="sent-img"
+                                    className="max-w-50 rounded-xl border border-black-700"
+                                />
+                            ) : (
+                                <p className='min-w-50 max-h-25 border rounded-xl p-3 border-black bg-green-700'>
+                                    {msg.text}
+                                </p>
+                            )}
+                        </div>
+
+                        <p className='mx-10 text-gray-400'>
+                            {formatTime(msg.createdAt)}
+                        </p>
+
                     </div>
                 </div>
             ))}
+            <div ref={scrollEnd}></div>
         </div>
     )
 }
 
-export default ChatSec
+export default ChatSec;
