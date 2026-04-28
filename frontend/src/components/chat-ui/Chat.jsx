@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
-import Leftsection from '../left-section/LeftSection'
-import RightSec from '../right-section/RightSec'
-import NoChat from '../right-section/NoChat'
+import Leftsection from '../left-section/LeftSection.jsx'
+import RightSec from '../right-section/RightSec.jsx'
+import NoChat from '../right-section/NoChat.jsx'
 import { userdata } from '../../lib/dummy'
 import { MsgContext } from '../../../context/MsgContext'
 
