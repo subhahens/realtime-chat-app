@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import Login from './components/login/Login.jsx';
 import SignUp from './components/login/SignUp.jsx';
 import { Routes,Route, Navigate } from 'react-router-dom';
-import Notfound from './components/notfound.JSX';
+import Notfound from './components/Notfound.jsx';
 import Chat from './components/chat-ui/Chat.jsx';
 import MyProfile from './components/myProfile/MyProfile.jsx';
 import {Toaster} from 'react-hot-toast';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../context/AuthContext.jsx';
 
 const App = () => {
   const {AuthUser} = useContext(AuthContext);

@@ -1,7 +1,7 @@
-import {useState,React, useContext} from 'react'
-import { useNavigate } from 'react-router-dom'
-import { EllipsisVertical,LogOut,CircleUserRound } from 'lucide-react'
-import { AuthContext } from '../../../context/AuthContext';
+import {useState,React, useContext} from 'react';
+import { useNavigate } from 'react-router-dom';
+import { EllipsisVertical,LogOut,CircleUserRound } from 'lucide-react';
+import { AuthContext } from '../../../context/AuthContext.jsx';
 const Nav = () => {
     const [open, setOpen] = useState(false); 
     const navigate = useNavigate();

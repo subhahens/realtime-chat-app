@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { EllipsisVertical, SendHorizontal, Plus } from 'lucide-react'
-import { MsgContext } from '../../../context/MsgContext';
-import { AuthContext } from '../../../context/AuthContext';
+import { MsgContext } from '../../../context/MsgContext.jsx';
+import { AuthContext } from '../../../context/AuthContext.jsx';
 import toast from 'react-hot-toast';
 
 const InputSec = () => {

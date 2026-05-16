@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useRef } from 'react'
-import { messagesDummyData } from '../../lib/dummy'
 import { formatTime } from '../../lib/utils'
-import { MsgContext } from '../../../context/MsgContext';
-import { AuthContext } from '../../../context/AuthContext';
+import { MsgContext } from '../../../context/MsgContext.jsx';
+import { AuthContext } from '../../../context/AuthContext.jsx';
 
 const ChatSec = () => {
     const { messages, selectedUser, setSelectedUser } = useContext(MsgContext);

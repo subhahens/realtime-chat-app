@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Nav from './nav.jsx';
+import Nav from './Nav.jsx';
 import SearchContacts from './SearchContacts.jsx';
 import Contacts from './Contacts.jsx';
 import { MsgContext } from '../../../context/MsgContext.jsx';

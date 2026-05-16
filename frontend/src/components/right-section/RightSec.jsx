@@ -3,7 +3,7 @@ import { EllipsisVertical, SendHorizontal, Plus } from 'lucide-react'
 import InputSec from './InputSec.jsx'
 import ProfileNav from './ProfileNav.jsx'
 import ChatSec from './ChatSec.jsx'
-import { MsgContext } from '../../../context/MsgContext'
+import { MsgContext } from '../../../context/MsgContext.jsx'
 const RightSec = () => {
   const {selectedUser} = useContext(MsgContext);
   return (

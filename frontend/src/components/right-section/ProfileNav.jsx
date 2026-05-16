@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import defIMG from '../../assests/DefaultIMG.jpg'
 import { EllipsisVertical, SendHorizontal, Plus } from 'lucide-react'
-import { AuthContext } from '../../../context/AuthContext'
-import { MsgContext } from '../../../context/MsgContext'
+import { AuthContext } from '../../../context/AuthContext.jsx'
+import { MsgContext } from '../../../context/MsgContext.jsx'
 const ProfileNav = ({user}) => {
     const {selectedUser} = useContext(MsgContext);
     const {OnlineUser} = useContext(AuthContext);

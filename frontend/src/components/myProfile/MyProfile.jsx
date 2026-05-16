@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import defIMG from '../../assests/DefaultIMG.jpg';
-import { AuthContext } from '../../../context/AuthContext';
+import { AuthContext } from '../../../context/AuthContext.jsx';
 import { SquarePen, X } from 'lucide-react';
 
 const MyProfile = () => {
