@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Nav from './Nav.jsx';
 import SearchContacts from './SearchContacts.jsx';
-import Contacts from './Contacts.jsx';
+import Temp from './Temp.jsx';
 import { MsgContext } from '../../../context/MsgContext.jsx';
 import { AuthContext } from '../../../context/AuthContext.jsx';
 const Leftsection = () => {
