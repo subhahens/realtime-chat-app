@@ -1,6 +1,6 @@
 import React from 'react'
 import defIMG from '../../assests/DefaultIMG.jpg'
-const Temp = (props) => {
+const Contacts = (props) => {
     return (
         <div onClick={props.onClick} className='bg-gray-900 border text-white border-gray-500 p-3 gap-4 w-full h-20 flex flex-row justify-between cursor-pointer select-none items-center'>
             <div className='h-full gap-4 flex flex-row items-center justify-center'>
@@ -18,4 +18,4 @@ const Temp = (props) => {
     )
 }
 
-export default Temp;
+export default Contacts;
